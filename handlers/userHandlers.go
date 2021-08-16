@@ -5,6 +5,7 @@ import (
 	"net/http"
 
 	users "www.github.com/Ammce/banking-go-auth/domain/Users"
+	userdto "www.github.com/Ammce/banking-go-auth/dto/userDTO"
 )
 
 type UserHandlers struct {
@@ -12,7 +13,7 @@ type UserHandlers struct {
 }
 
 func (uh UserHandlers) Register(w http.ResponseWriter, r *http.Request) {
-	var body users.User
+	var body userdto.CreateUser
 	err := json.NewDecoder(r.Body).Decode(&body)
 	if err != nil {
 		writeReponse(w, http.StatusBadRequest, err)

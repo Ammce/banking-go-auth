@@ -1,15 +1,18 @@
 package users
 
+import userdto "www.github.com/Ammce/banking-go-auth/dto/userDTO"
+
 type UserService interface {
-	Register(User) (*User, *error)
+	Register(userdto.CreateUser) (*User, *error)
 }
 
 type DefaultUserService struct {
 	repo UserRepository
 }
 
-func (us DefaultUserService) Register(user User) (*User, *error) {
-	u, e := us.repo.Register(user)
+func (us DefaultUserService) Register(user userdto.CreateUser) (*User, *error) {
+	newUser := NewUser(user.Email, user.Password, user.Role)
+	u, e := us.repo.Register(*newUser)
 	if e != nil {
 		return nil, e
 	}
