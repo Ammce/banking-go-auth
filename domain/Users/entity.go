@@ -1,10 +1,10 @@
 package users
 
-import "github.com/google/uuid"
+import "go.mongodb.org/mongo-driver/bson/primitive"
 
 type User struct {
-	ID       uuid.UUID
-	email    string
-	password string
-	role     string
+	ID       primitive.ObjectID `bson:"_id,omitempty"`
+	Email    string             `bson:"email,omitempty"`
+	Password string             `bson:"password,omitempty"`
+	Role     string             `bson:"role,omitempty"`
 }
