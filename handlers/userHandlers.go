@@ -11,7 +11,7 @@ type UserHandlers struct {
 	service users.DefaultUserService
 }
 
-func (uh UserHandlers) CreateCustomer(w http.ResponseWriter, r *http.Request) {
+func (uh UserHandlers) Register(w http.ResponseWriter, r *http.Request) {
 	var body users.User
 	err := json.NewDecoder(r.Body).Decode(&body)
 	if err != nil {
@@ -23,5 +23,11 @@ func (uh UserHandlers) CreateCustomer(w http.ResponseWriter, r *http.Request) {
 		} else {
 			writeReponse(w, http.StatusOK, r)
 		}
+	}
+}
+
+func NewUserHandlers(service users.DefaultUserService) UserHandlers {
+	return UserHandlers{
+		service: service,
 	}
 }
