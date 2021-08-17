@@ -1,7 +1,7 @@
 package userdto
 
 type CreateUser struct {
-	Email    string `json:"string"`
+	Email    string `json:"email"`
 	Password string `json:"password"`
 	Role     string `json:"role"`
 }
