@@ -9,7 +9,7 @@ import (
 
 type UserRepository interface {
 	Register(User) (*User, *error)
-	FindBy(email string) (*User, *error)
+	FindByEmail(email string) (*User, *error)
 }
 
 func (u User) AsCreateUserResponseDTO() *userdto.CreateUserResponse {

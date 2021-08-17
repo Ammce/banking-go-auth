@@ -10,7 +10,7 @@ type UserRepositoryDB struct {
 	db *mongo.Database
 }
 
-func (ur UserRepositoryDB) FindBy(email string) (*users.User, *error) {
+func (ur UserRepositoryDB) FindByEmail(email string) (*users.User, *error) {
 	var user users.User
 	err := ur.db.Collection("users").FindOne(nil, users.User{Email: email}).Decode(user)
 	if err != nil {
